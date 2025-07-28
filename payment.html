@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UPI Payment</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .payment-page {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .payment-page h1 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #262626;
+    }
+
+    .qr-container {
+      margin: 20px 0;
+    }
+
+    .qr-image {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+    }
+
+    p {
+      margin: 8px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    strong {
+      color: #111;
+    }
+
+    em {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .feedback-button {
+      margin-top: 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .feedback-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-page">
+    <h1>Scan to Pay</h1>
+    <p id="sportText">Sport: </p>
+    <div class="qr-container">
+      <img id="qrImage" src="images/upi-common.jpg" alt="UPI QR Code" class="qr-image" />
+    </div>
+    <p><strong>Amount:</strong> ₹<span id="amountText">0</span></p>
+    <p><strong>UPI ID:</strong> turfpayment@upi</p>
+    <p><em>After payment, your slot will be confirmed manually.</em></p>
+
+    <!-- Feedback Button -->
+    <button class="feedback-button" onclick="window.location.href='feedback.html'">
+      Give Feedback
+    </button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const sport = params.get('sport') || 'N/A';
+    const amount = params.get('amount') || '0';
+
+    document.getElementById('sportText').textContent = `Sport: ${sport.charAt(0).toUpperCase() + sport.slice(1)}`;
+    document.getElementById('amountText').textContent = amount;
+
+    const qrImage = document.getElementById('qrImage');
+    if (sport === 'cricket') {
+      qrImage.src = 'images/upi-common.jpg';
+    } else if (sport === 'football') {
+      qrImage.src = 'images/upi-common.jpg';
+    } else {
+      qrImage.src = 'images/upi-common.jpg';
+    }
+    
+  </script>
+</body>
+</html>

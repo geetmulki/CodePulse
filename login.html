@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="signup.css" /> <!-- Reuse same CSS -->
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input
+        type="text"
+        name="fullName"
+        placeholder="Full Name"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <button type="submit">Login</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 10px;">
+      Not registered? <a href="signup.html">Sign Up</a>
+    </p>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const loginData = {
+        fullName: loginForm.fullName.value,
+        password: loginForm.password.value
+      };
+
+      console.log("Login Attempt:", loginData);
+      alert("Login successful (demo) ✅");
+
+      loginForm.reset();
+    });
+  </script>
+
+</body>
+</html>

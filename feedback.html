@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback</title>
+  <link rel="stylesheet" href="feedback.css" />
+</head>
+<body>
+
+  <div class="feedback-container">
+    <h2>Turf Feedback</h2>
+    <form id="feedbackForm">
+      <input
+        type="text"
+        name="name"
+        placeholder="Your name"
+        required
+      />
+
+      <div class="rating-stars" id="starContainer">
+        <span class="star" data-star="1">★</span>
+        <span class="star" data-star="2">★</span>
+        <span class="star" data-star="3">★</span>
+        <span class="star" data-star="4">★</span>
+        <span class="star" data-star="5">★</span>
+      </div>
+
+      <textarea
+        name="feedback"
+        placeholder="Write your feedback..."
+        rows="4"
+        required
+      ></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    let selectedRating = 0;
+
+    const stars = document.querySelectorAll('.star');
+    const form = document.getElementById('feedbackForm');
+
+    stars.forEach((star) => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.getAttribute('data-star'));
+        updateStarDisplay();
+      });
+    });
+
+    function updateStarDisplay() {
+      stars.forEach((s, index) => {
+        s.classList.toggle('selected', index < selectedRating);
+      });
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = form.name.value;
+      const feedback = form.feedback.value;
+
+      alert(`Thank you, ${name}!\nYour rating: ${selectedRating} stars\nFeedback: ${feedback}`);
+
+      form.reset();
+      selectedRating = 0;
+      updateStarDisplay();
+    });
+  </script>
+
+</body>
+</html>
